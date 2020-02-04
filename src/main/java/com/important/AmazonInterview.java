@@ -1,55 +1,70 @@
 package com.important;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-public class AmazonInterview 
+public class AmazonInterview
 {
-	static String str = "cTrRtcC";
-	public static void main(String...arg)
-	{
-		ArrayList<String> arr = new ArrayList<String>();
-		ArrayList<String> res = new ArrayList<String>();
+	public static void main(String[] args) {
+
+		String input = "bcBDcdCb";
+		StringBuffer sb = new StringBuffer(input);
 		
-		for(int i=0;i<str.length();i++)
-		{
-			arr.add(str.charAt(i)+"");
-		}
-		
-		for(int i=0;i<arr.size();i++)
-		{
-			String s = arr.get(i);
-			if(s==null)
-				continue;
-			
-			res.add(s);
-			
-			/*for(int j=i+1;j<arr.size();j++)
-			{
-				if(arr.get(j) == null)
-					continue;
-				if(s.equalsIgnoreCase(arr.get(j)))
-				{
-						res.add(arr.get(j));
-						arr.set(j, null);
+		int i=0;
+		while(i<sb.length()){
+
+			char base = sb.charAt(i);
+			int j = i+1;		
+
+			if(j == sb.length())
+				break;
+
+			while(j < sb.length()-1){
+				char first = sb.charAt(j);
+				boolean flag = false;
+
+				if(Character.toUpperCase(base) == Character.toUpperCase(first))
+					flag = true;
+				else {
+					int k = j+1;				
+					while(k < sb.length()) {
+						char second = sb.charAt(k);
+
+						if(Character.toUpperCase(base) == Character.toUpperCase(second)) {
+							swap(sb,j,k);
+							flag = true;
+							break;
+						}
+						k++;
+					}
 				}
-			}*/
-			
-			int j=i+1;
-			while(j<arr.size())
-			{
-				if(s.equalsIgnoreCase(arr.get(j)))
-				{
-					res.add(arr.get(j));
-					arr.remove(j);
-				}
-				else
+
+				if(flag)
 					j++;
+				else
+					break;
 			}
+
+			i++;
 		}
 		
-		for(String s : res)
-			System.out.print(s);
+		System.out.println(sb);
+
+	}
+
+	public static void swap(StringBuffer sb, int x, int y) {
 		
+		char charX = sb.charAt(x);
+		char charY = sb.charAt(y);
+		sb.setCharAt(x, charY);
+		sb.setCharAt(y, charX);
+		/*String result = "";
+		for(int i=0; i<sb.length(); i++){
+			if(i == x)
+				result += charY;
+			else if(i == y)
+				result += charX;
+			else
+				result += sb.charAt(i);
+		}
+
+		return result;*/
 	}
 }
