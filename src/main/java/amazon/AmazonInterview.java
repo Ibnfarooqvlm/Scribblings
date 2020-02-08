@@ -1,4 +1,4 @@
-package com.important;
+package amazon;
 
 public class AmazonInterview
 {
